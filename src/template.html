@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="main.js"></script>
+    <header>
+        <img src="../src/icons/todo-icon.png" alt="">
+        <h1>To-Do List</h1>
+    </header>
+    <div class="container">
+        <div class="sidebar-content">
+            <div class="nav-today">
+                <img class="todo-icons" src="../src/icons/calendar-today.png" alt=""><a href="">Today</a>
+            </div>
+            <div class="nav-weekly">
+                <img class="todo-icons" src="../src/icons/calendar-week.png" alt=""><a href="">This Week</a>
+            </div>
+            <div class="nav-monthly">
+                <img class="todo-icons" src="../src/icons/calendar-month.png" alt=""><a href="">This Month</a>
+            </div>
+            <div class="projects">
+                <img class="todo-icons" src="../src/icons/project.png" alt=""><a href="">Projects</a>
+            </div>
+        </div>
+        <div class="main">
+            <div class="add-task">
+                <button class="imgbutton" data-modal-target="#modal">
+                    <img src="../src/icons/todo-list-add.png" alt="" onclick="">
+                    <span>Add a task</span>
+                </button>
+            </div>
+            <div class="greeting">
+                <span>Welcome back, shyseus</span>
+            </div>
+            <div class="modal" id="modal">
+                <form class="test">
+                    <div class="form-title">
+                        <label for="title">Title</label><br>
+                        <button data-close-button class="close-button" aria-label="Close alert" type="button data-close">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="form-input">
+                        <input type="text" id="title" name="title" size="40"><br>
+                    </div>
+                    <div class="form-title">
+                        <label for="description">Description</label><br>
+                    </div>
+                    <div class="form-input">
+                        <textarea id="description" name="description" rows="10" cols="40"></textarea>
+                    </div>
+                    <div class="form-title">
+                        <label for="duedate">Due Date</label><br>
+                    </div>
+                    <div class="form-input">
+                        <input type="date" id="duedate" name="duedate"><br>
+                    </div>
+                    <div class="form-title">
+                        <label for="priority">Priority</label>
+                    </div>
+                    <div class="form-input">
+                        <select name="priority" id="priority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div id="overlay">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
