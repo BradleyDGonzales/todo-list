@@ -9,8 +9,7 @@
 <script defer src="main.js"></script></head>
 
 <body>
-    <script src="main.js"></script>
-    <header>
+    <header class="mainheader">
         <img src="../src/icons/todo-icon.png" alt="">
         <h1>To-Do List</h1>
     </header>
@@ -36,11 +35,11 @@
                     <span>Add a task</span>
                 </button>
             </div>
-            <div class="greeting">
+            <div class="greeting"> 
                 <span>Welcome back, shyseus</span>
             </div>
             <div class="modal" id="modal">
-                <form class="test">
+                <form class="form">
                     <div class="form-title">
                         <label for="title">Title</label><br>
                         <button data-close-button class="close-button" aria-label="Close alert" type="button data-close">
@@ -48,10 +47,10 @@
                         </button>
                     </div>
                     <div class="form-input">
-                        <input type="text" id="title" name="title" size="40"><br>
+                        <input required type="text" id="title" name="title" size="40"><br>
                     </div>
                     <div class="form-title">
-                        <label for="description">Description</label><br>
+                        <label for="description">Description (optional)</label><br>
                     </div>
                     <div class="form-input">
                         <textarea id="description" name="description" rows="10" cols="40"></textarea>
@@ -60,7 +59,7 @@
                         <label for="duedate">Due Date</label><br>
                     </div>
                     <div class="form-input">
-                        <input type="date" id="duedate" name="duedate"><br>
+                        <input required type="date" id="duedate" name="duedate"><br>
                     </div>
                     <div class="form-title">
                         <label for="priority">Priority</label>
@@ -72,12 +71,16 @@
                             <option value="high">High</option>
                         </select>
                     </div>
+                    <div id="submitbutton">
+                        <input type="submit" value="Add task">
+                    </div>
                 </form>
             </div>
             <div id="overlay">
             </div>
         </div>
     </div>
+    <script src="main.js"></script>
 
 </body>
 

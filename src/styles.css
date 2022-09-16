@@ -158,3 +158,21 @@ option, select {
     font-size: 1.25em;
     gap: 8px;
 }
+#submitbutton {
+    display: flex;
+    padding: 10px 15px;
+    justify-content: center;
+}
+input[type=submit] {
+    border-radius: 10px;
+    border: none;
+    background-color: #334155;
+    color: white;
+    font-family: 'gooddogregular';
+    font-size: 32px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+input[type=submit]:active {
+    transform: scale(0.95);
+}
