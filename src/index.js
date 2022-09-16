@@ -12,5 +12,3 @@ Array.from(addTaskButton).forEach(button => {
     button.addEventListener('click', initModal());
 })
 submitButton.addEventListener('click', collectData);
-let test = taskDate;
-console.log(test);
