@@ -15,6 +15,9 @@
     </header>
     <div class="container">
         <div class="sidebar-content">
+            <div class="nav-all">
+                <img class="todo-icons" src="../src/icons/grid.png" alt=""><a href="">General</a>
+            </div>
             <div class="nav-today">
                 <img class="todo-icons" src="../src/icons/calendar-today.png" alt=""><a href="">Today</a>
             </div>
@@ -37,6 +40,8 @@
             </div>
             <div class="greeting"> 
                 <span>Welcome back, shyseus</span>
+            </div>
+            <div class="task">
             </div>
             <div class="modal" id="modal">
                 <form class="form">
@@ -65,10 +70,11 @@
                         <label for="priority">Priority</label>
                     </div>
                     <div class="form-input">
-                        <select name="priority" id="priority">
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
+                        <select required name="priority" id="priority">
+                            <option class="options" disabled selected value>--SELECT--</option>
+                            <option class="options" value="low">Low</option>
+                            <option class="options" value="medium">Medium</option>
+                            <option class="options" value="high">High</option>
                         </select>
                     </div>
                     <div id="submitbutton">
@@ -80,7 +86,6 @@
             </div>
         </div>
     </div>
-    <script src="main.js"></script>
 
 </body>
 
