@@ -195,4 +195,15 @@ input[type=submit]:active {
     align-items: center;
     background-color: #d1d5db;
     border-radius: 10px;
+    height: fit-content;
+}
+.taskdesc,
+.tasktitle {
+    inline-size: 350px;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+.taskdate,
+.taskprio {
+    text-align: center;
 }

@@ -16,16 +16,16 @@
     <div class="container">
         <div class="sidebar-content">
             <div class="nav-all">
-                <img class="todo-icons" src="../src/icons/grid.png" alt=""><a href="">General</a>
+                <img class="todo-icons" src="../src/icons/grid.png" alt=""><a href="#">General</a>
             </div>
             <div class="nav-today">
-                <img class="todo-icons" src="../src/icons/calendar-today.png" alt=""><a href="">Today</a>
+                <img class="todo-icons" src="../src/icons/calendar-today.png" alt=""><a href="#">Today</a>
             </div>
             <div class="nav-weekly">
-                <img class="todo-icons" src="../src/icons/calendar-week.png" alt=""><a href="">This Week</a>
+                <img class="todo-icons" src="../src/icons/calendar-week.png" alt=""><a href="#">This Week</a>
             </div>
             <div class="nav-monthly">
-                <img class="todo-icons" src="../src/icons/calendar-month.png" alt=""><a href="">This Month</a>
+                <img class="todo-icons" src="../src/icons/calendar-month.png" alt=""><a href="#">This Month</a>
             </div>
             <div class="projects">
                 <img class="todo-icons" src="../src/icons/project.png" alt=""><a href="">Projects</a>
@@ -41,7 +41,7 @@
             <div class="greeting"> 
                 <span>Welcome back, shyseus</span>
             </div>
-            <div class="task">
+            <div class="task" id="tasks">
             </div>
             <div class="modal" id="modal">
                 <form class="form">
@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-input">
                         <select required name="priority" id="priority">
-                            <option class="options" disabled selected value>--SELECT--</option>
+                            <option class="options" disabled selected value></option>
                             <option class="options" value="low">Low</option>
                             <option class="options" value="medium">Medium</option>
                             <option class="options" value="high">High</option>
