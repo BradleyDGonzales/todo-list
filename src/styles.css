@@ -191,6 +191,7 @@ input[type=submit]:active {
 }
 .taskCard {
     display: grid;
+    grid-template-rows: 0.1fr repeat(4, 1fr);
     justify-content: center;
     align-items: center;
     background-color: #d1d5db;
@@ -206,4 +207,12 @@ input[type=submit]:active {
 .taskdate,
 .taskprio {
     text-align: center;
+}
+.taskedit-div {
+    display: flex;
+    margin-top: 16px;
+    justify-content: end;
+}
+.taskedit {
+    cursor: pointer;
 }

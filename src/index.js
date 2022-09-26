@@ -3,6 +3,7 @@ import initModal from '../src/modal'
 import { collectData } from '../src/data';
 import { showTodaysTasks, insertLocalStorageToWebpage, showWeeklyTasks, showAllTasks, showMonthlyTasks} from '../src/displayData';
 import { taskTitle, taskDesc, taskDate, taskPrio, flag } from '../src/data'
+import { editTask } from '../src/edit';
 
 const addTaskButton = document.getElementsByClassName('imgbutton');
 const submitButton = document.querySelector('input[type=submit]')
@@ -17,7 +18,7 @@ window.onload = function() {
     insertLocalStorageToWebpage();
 }
 document.addEventListener('click', function (e) {
-    console.log(e.target.tagName)
+    console.log(e);
     if (e.target.tagName === 'A' && e.target.textContent === 'Today') {
         showTodaysTasks();
     }
@@ -29,5 +30,8 @@ document.addEventListener('click', function (e) {
     }
     if (e.target.tagName === 'A' && e.target.textContent === 'This Month') {
         showMonthlyTasks();
+    }
+    if (e.target.className === 'taskedit') {
+        editTask();
     }
 })

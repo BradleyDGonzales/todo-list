@@ -9,6 +9,12 @@ export function insertDataToWebpage() {
     const taskCard = document.createElement('div');
     taskCard.classList.add('taskCard');
     taskCard.setAttribute('id', `task${count}`)
+    const editDiv = document.createElement('div');
+    editDiv.classList.add('taskedit-div')
+    const editElement = document.createElement('img');
+    editElement.setAttribute('src','../src/icons/edit.png')
+    editElement.classList.add('taskedit')
+    editElement.setAttribute('onclick','editTask()')
     const titleElement = document.createElement('p');
     titleElement.classList.add('tasktitle')
     const descElement = document.createElement('p');
@@ -28,6 +34,8 @@ export function insertDataToWebpage() {
     dateElement.textContent = localStorage.getItem(`task${count}date`)
     prioElement.textContent = localStorage.getItem(`task${count}prio`)
     taskDiv.forEach(task => task.appendChild(taskCard));
+    taskCard.appendChild(editDiv)
+    editDiv.appendChild(editElement);
     taskCard.appendChild(titleElement);
     taskCard.appendChild(descElement);
     taskCard.appendChild(dateElement);
@@ -42,6 +50,11 @@ export function insertLocalStorageToWebpage() {
             const taskCard = document.createElement('div');
             taskCard.classList.add('taskCard');
             taskCard.setAttribute('id', `task${i}`)
+            const editDiv = document.createElement('div');
+            editDiv.classList.add('taskedit-div')
+            const editElement = document.createElement('img');
+            editElement.setAttribute('src','../src/icons/edit.png')
+            editElement.classList.add('taskedit')
             const titleElement = document.createElement('p');
             titleElement.classList.add('tasktitle')
             const descElement = document.createElement('p');
@@ -60,6 +73,8 @@ export function insertLocalStorageToWebpage() {
             console.log(localStorage.getItem('task1date'))
 
             taskDiv.forEach(task => task.appendChild(taskCard));
+            taskCard.appendChild(editDiv)
+            editDiv.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
             taskCard.appendChild(dateElement);
@@ -76,7 +91,7 @@ export function showTodaysTasks() {
         child = taskDivParent.lastElementChild;
     }
     let myDate = new Date();
-    let todayDate = new Date(myDate.getTime() + myDate.getTimezoneOffset() * 60000).toLocaleDateString();
+    let todayDate = new Date(myDate.getTime() + myDate.getTimezoneOffset()).toLocaleDateString();
     let todayTasksValues = {};
 
     for (let i = 1; i <= parseInt(localStorage.getItem('count')); i++) {
@@ -85,6 +100,11 @@ export function showTodaysTasks() {
             const taskCard = document.createElement('div');
             taskCard.classList.add('taskCard');
             taskCard.setAttribute('id', `task${count}`)
+            const editDiv = document.createElement('div');
+            editDiv.classList.add('taskedit-div')
+            const editElement = document.createElement('img');
+            editElement.setAttribute('src','../src/icons/edit.png')
+            editElement.classList.add('taskedit')
             const titleElement = document.createElement('p');
             titleElement.classList.add('tasktitle')
             const descElement = document.createElement('p');
@@ -102,6 +122,8 @@ export function showTodaysTasks() {
             todayTasksValues[`duedate${i}`] = todayDate;
             todayTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
             taskDiv.forEach(task => task.appendChild(taskCard));
+            taskCard.appendChild(editDiv)
+            editDiv.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
             taskCard.appendChild(dateElement);
@@ -126,6 +148,11 @@ export function showWeeklyTasks() {
             const taskCard = document.createElement('div');
             taskCard.classList.add('taskCard');
             taskCard.setAttribute('id', `task${count}`)
+            const editDiv = document.createElement('div');
+            editDiv.classList.add('taskedit-div')
+            const editElement = document.createElement('img');
+            editElement.setAttribute('src','../src/icons/edit.png')
+            editElement.classList.add('taskedit')
             const titleElement = document.createElement('p');
             titleElement.classList.add('tasktitle')
             const descElement = document.createElement('p');
@@ -143,6 +170,8 @@ export function showWeeklyTasks() {
             weeklyTasksValues[`duedate${i}`] = localStorage.getItem(`task${i}date`)
             weeklyTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
             taskDiv.forEach(task => task.appendChild(taskCard));
+            taskCard.appendChild(editDiv)
+            editDiv.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
             taskCard.appendChild(dateElement);
@@ -165,6 +194,11 @@ export function showMonthlyTasks() {
             const taskCard = document.createElement('div');
             taskCard.classList.add('taskCard');
             taskCard.setAttribute('id', `task${count}`)
+            const editDiv = document.createElement('div');
+            editDiv.classList.add('taskedit-div')
+            const editElement = document.createElement('img');
+            editElement.setAttribute('src','../src/icons/edit.png')
+            editElement.classList.add('taskedit')
             const titleElement = document.createElement('p');
             titleElement.classList.add('tasktitle')
             const descElement = document.createElement('p');
@@ -182,6 +216,8 @@ export function showMonthlyTasks() {
             monthlyTasksValues[`duedate${i}`] = localStorage.getItem(`task${i}date`)
             monthlyTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
             taskDiv.forEach(task => task.appendChild(taskCard));
+            taskCard.appendChild(editDiv)
+            editDiv.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
             taskCard.appendChild(dateElement);
@@ -203,6 +239,11 @@ export function showAllTasks() {
         const taskCard = document.createElement('div');
         taskCard.classList.add('taskCard');
         taskCard.setAttribute('id', `task${count}`)
+        const editDiv = document.createElement('div');
+        editDiv.classList.add('taskedit-div')
+        const editElement = document.createElement('img');
+        editElement.setAttribute('src','../src/icons/edit.png')
+        editElement.classList.add('taskedit')
         const titleElement = document.createElement('p');
         titleElement.classList.add('tasktitle')
         const descElement = document.createElement('p');
@@ -220,6 +261,8 @@ export function showAllTasks() {
         generalTasksValues[`duedate${i}`] = localStorage.getItem(`task${i}date`)
         generalTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
         taskDiv.forEach(task => task.appendChild(taskCard));
+        taskCard.appendChild(editDiv)
+        editDiv.appendChild(editElement);
         taskCard.appendChild(titleElement);
         taskCard.appendChild(descElement);
         taskCard.appendChild(dateElement);
