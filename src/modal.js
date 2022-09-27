@@ -1,4 +1,7 @@
 export default function initModal() {
+    if (document.getElementById('taskbutton').value === "Save changes") {
+        document.getElementById('taskbutton').value = "Add task"
+    }
     const openModalButtons = document.querySelectorAll('[data-modal-target]');
     const closeModalButtons = document.querySelectorAll('[data-close-button]');
     const overlay = document.getElementById('overlay');
@@ -11,12 +14,14 @@ export default function initModal() {
     overlay.addEventListener('click', () => {
         const modals = document.querySelectorAll('.modal.active');
         modals.forEach(modal => {
+            document.getElementById("myform").reset();
             closeModal(modal);
         })
     })
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal')
+            document.getElementById("myform").reset();
             closeModal(modal)
         })
     })

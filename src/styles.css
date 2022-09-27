@@ -153,6 +153,14 @@ option, select {
     opacity: 1;
     pointer-events: all;
 }
+.taskedit {
+    background-color: #d1d5db;
+    border: none;
+}
+.imgeditbutton {
+    background-color: #d1d5db;
+    border: none;
+}
 .imgbutton {
     display: flex;
     align-items: center;
@@ -214,5 +222,6 @@ input[type=submit]:active {
     justify-content: end;
 }
 .taskedit {
+    background-color: #d1d5db;
     cursor: pointer;
 }

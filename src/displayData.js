@@ -11,10 +11,16 @@ export function insertDataToWebpage() {
     taskCard.setAttribute('id', `task${count}`)
     const editDiv = document.createElement('div');
     editDiv.classList.add('taskedit-div')
+    const editButton = document.createElement('button');
+    editButton.classList.add('imgeditbutton')
+    editButton.setAttribute('data-modal-target', '#modal')
+
+
     const editElement = document.createElement('img');
-    editElement.setAttribute('src','../src/icons/edit.png')
+    editElement.setAttribute('src', '../src/icons/edit.png')
     editElement.classList.add('taskedit')
-    editElement.setAttribute('onclick','editTask()')
+    editElement.setAttribute('id', `edit-task${count}`)
+
     const titleElement = document.createElement('p');
     titleElement.classList.add('tasktitle')
     const descElement = document.createElement('p');
@@ -35,7 +41,8 @@ export function insertDataToWebpage() {
     prioElement.textContent = localStorage.getItem(`task${count}prio`)
     taskDiv.forEach(task => task.appendChild(taskCard));
     taskCard.appendChild(editDiv)
-    editDiv.appendChild(editElement);
+    editDiv.appendChild(editButton)
+    editButton.appendChild(editElement);
     taskCard.appendChild(titleElement);
     taskCard.appendChild(descElement);
     taskCard.appendChild(dateElement);
@@ -52,9 +59,16 @@ export function insertLocalStorageToWebpage() {
             taskCard.setAttribute('id', `task${i}`)
             const editDiv = document.createElement('div');
             editDiv.classList.add('taskedit-div')
+            const editButton = document.createElement('button');
+
+            editButton.classList.add('imgeditbutton')
+            editButton.setAttribute('data-modal-target', '#modal')
+
             const editElement = document.createElement('img');
-            editElement.setAttribute('src','../src/icons/edit.png')
+            editElement.setAttribute('src', '../src/icons/edit.png')
             editElement.classList.add('taskedit')
+            editElement.setAttribute('id', `edit-task${i}`)
+
             const titleElement = document.createElement('p');
             titleElement.classList.add('tasktitle')
             const descElement = document.createElement('p');
@@ -67,14 +81,11 @@ export function insertLocalStorageToWebpage() {
             descElement.textContent = localStorage.getItem(`task${i}desc`)
             dateElement.textContent = localStorage.getItem(`task${i}date`)
             prioElement.textContent = localStorage.getItem(`task${i}prio`)
-            let myDate = new Date();
-            let todayDate = new Date(myDate.getTime() + myDate.getTimezoneOffset() * 60000).toLocaleDateString();
-            console.log(todayDate);
-            console.log(localStorage.getItem('task1date'))
 
             taskDiv.forEach(task => task.appendChild(taskCard));
             taskCard.appendChild(editDiv)
-            editDiv.appendChild(editElement);
+            editDiv.appendChild(editButton)
+            editButton.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
             taskCard.appendChild(dateElement);
@@ -99,12 +110,19 @@ export function showTodaysTasks() {
             const taskDiv = document.querySelectorAll('.task');
             const taskCard = document.createElement('div');
             taskCard.classList.add('taskCard');
-            taskCard.setAttribute('id', `task${count}`)
+            taskCard.setAttribute('id', `task${i}`)
             const editDiv = document.createElement('div');
             editDiv.classList.add('taskedit-div')
+            const editButton = document.createElement('button');
+            editButton.classList.add('imgeditbutton')
+            editButton.setAttribute('data-modal-target', '#modal')
+
+
             const editElement = document.createElement('img');
-            editElement.setAttribute('src','../src/icons/edit.png')
+            editElement.setAttribute('src', '../src/icons/edit.png')
             editElement.classList.add('taskedit')
+            editElement.setAttribute('id', `edit-task${i}`)
+
             const titleElement = document.createElement('p');
             titleElement.classList.add('tasktitle')
             const descElement = document.createElement('p');
@@ -123,7 +141,8 @@ export function showTodaysTasks() {
             todayTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
             taskDiv.forEach(task => task.appendChild(taskCard));
             taskCard.appendChild(editDiv)
-            editDiv.appendChild(editElement);
+            editDiv.appendChild(editButton)
+            editButton.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
             taskCard.appendChild(dateElement);
@@ -147,12 +166,19 @@ export function showWeeklyTasks() {
             const taskDiv = document.querySelectorAll('.task');
             const taskCard = document.createElement('div');
             taskCard.classList.add('taskCard');
-            taskCard.setAttribute('id', `task${count}`)
+            taskCard.setAttribute('id', `task${i}`)
             const editDiv = document.createElement('div');
             editDiv.classList.add('taskedit-div')
+            const editButton = document.createElement('button');
+            editButton.classList.add('imgeditbutton')
+            editButton.setAttribute('data-modal-target', '#modal')
+
+
             const editElement = document.createElement('img');
-            editElement.setAttribute('src','../src/icons/edit.png')
+            editElement.setAttribute('src', '../src/icons/edit.png')
             editElement.classList.add('taskedit')
+            editElement.setAttribute('id', `edit-task${i}`)
+
             const titleElement = document.createElement('p');
             titleElement.classList.add('tasktitle')
             const descElement = document.createElement('p');
@@ -171,7 +197,8 @@ export function showWeeklyTasks() {
             weeklyTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
             taskDiv.forEach(task => task.appendChild(taskCard));
             taskCard.appendChild(editDiv)
-            editDiv.appendChild(editElement);
+            editDiv.appendChild(editButton)
+            editButton.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
             taskCard.appendChild(dateElement);
@@ -193,12 +220,19 @@ export function showMonthlyTasks() {
             const taskDiv = document.querySelectorAll('.task');
             const taskCard = document.createElement('div');
             taskCard.classList.add('taskCard');
-            taskCard.setAttribute('id', `task${count}`)
+            taskCard.setAttribute('id', `task${i}`)
             const editDiv = document.createElement('div');
             editDiv.classList.add('taskedit-div')
+            const editButton = document.createElement('button');
+            editButton.classList.add('imgeditbutton')
+            editButton.setAttribute('data-modal-target', '#modal')
+
+
             const editElement = document.createElement('img');
-            editElement.setAttribute('src','../src/icons/edit.png')
+            editElement.setAttribute('src', '../src/icons/edit.png')
             editElement.classList.add('taskedit')
+            editElement.setAttribute('id', `edit-task${i}`)
+
             const titleElement = document.createElement('p');
             titleElement.classList.add('tasktitle')
             const descElement = document.createElement('p');
@@ -217,7 +251,8 @@ export function showMonthlyTasks() {
             monthlyTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
             taskDiv.forEach(task => task.appendChild(taskCard));
             taskCard.appendChild(editDiv)
-            editDiv.appendChild(editElement);
+            editDiv.appendChild(editButton)
+            editButton.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
             taskCard.appendChild(dateElement);
@@ -225,7 +260,7 @@ export function showMonthlyTasks() {
             console.log(`worked`);
         }
     }
-} 
+}
 export function showAllTasks() {
     const taskDivParent = document.getElementById('tasks')
     let child = taskDivParent.lastElementChild;
@@ -238,12 +273,19 @@ export function showAllTasks() {
         const taskDiv = document.querySelectorAll('.task');
         const taskCard = document.createElement('div');
         taskCard.classList.add('taskCard');
-        taskCard.setAttribute('id', `task${count}`)
+        taskCard.setAttribute('id', `task${i}`)
         const editDiv = document.createElement('div');
         editDiv.classList.add('taskedit-div')
+        const editButton = document.createElement('button');
+        editButton.classList.add('imgeditbutton')
+        editButton.setAttribute('data-modal-target', '#modal')
+
+
         const editElement = document.createElement('img');
-        editElement.setAttribute('src','../src/icons/edit.png')
+        editElement.setAttribute('src', '../src/icons/edit.png')
         editElement.classList.add('taskedit')
+        editElement.setAttribute('id', `edit-task${i}`)
+
         const titleElement = document.createElement('p');
         titleElement.classList.add('tasktitle')
         const descElement = document.createElement('p');
@@ -262,7 +304,8 @@ export function showAllTasks() {
         generalTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
         taskDiv.forEach(task => task.appendChild(taskCard));
         taskCard.appendChild(editDiv)
-        editDiv.appendChild(editElement);
+        editDiv.appendChild(editButton)
+        editButton.appendChild(editElement);
         taskCard.appendChild(titleElement);
         taskCard.appendChild(descElement);
         taskCard.appendChild(dateElement);

@@ -1,5 +1,3 @@
-import moment, { relativeTimeRounding } from 'moment';
-import { ToDoList } from '../src/ToDoList'
 import { insertDataToWebpage } from '../src/displayData';
 export let taskTitle;
 export let taskDesc;
@@ -8,9 +6,8 @@ export let taskPrio;
 export let flag = false;
 const form = document.querySelectorAll('.form');
 export function collectData(e) {
-    e.preventDefault();
+    //e.preventDefault();
     let formData = new FormData(form[0]);
-    console.log(formData);
     taskTitle = formData.get('title');
     taskDesc = formData.get('description');
     taskDate = formData.get('duedate');
