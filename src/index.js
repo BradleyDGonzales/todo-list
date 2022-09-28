@@ -2,7 +2,7 @@ import './styles.css'
 import initModal from '../src/modal'
 import { collectData } from '../src/data';
 import { showTodaysTasks, insertLocalStorageToWebpage, showWeeklyTasks, showAllTasks, showMonthlyTasks} from '../src/displayData';
-import { editTask, obtainID } from '../src/edit';
+import { checkTask, deleteTask, editTask, obtainID } from '../src/edit';
 
 const addTaskButton = document.getElementsByClassName('imgbutton');
 const submitButton = document.querySelector('input[type=submit]')
@@ -37,5 +37,14 @@ document.addEventListener('click', function (e) {
     }
     if (e.target.textContent === "Add a task") {
         initModal();
+    }
+    if (e.target.tagName === 'IMG' && e.target.className === 'taskcheck') {
+        obtainID(e.target.id);
+        checkTask();   
+    }
+    if (e.target.tagName === 'IMG' && e.target.className === 'taskdelete') {
+        obtainID(e.target.id);
+        deleteTask();
+    
     }
 })

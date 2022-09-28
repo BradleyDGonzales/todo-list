@@ -153,10 +153,13 @@ option, select {
     opacity: 1;
     pointer-events: all;
 }
+.taskcheck,
 .taskedit {
     background-color: #d1d5db;
     border: none;
 }
+.imgdeletebutton,
+.imgcheckbutton,
 .imgeditbutton {
     background-color: #d1d5db;
     border: none;
@@ -219,8 +222,10 @@ input[type=submit]:active {
 .taskedit-div {
     display: flex;
     margin-top: 16px;
-    justify-content: end;
+    justify-content: space-between;
 }
+.taskdelete,
+.taskcheck,
 .taskedit {
     background-color: #d1d5db;
     cursor: pointer;

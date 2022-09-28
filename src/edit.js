@@ -1,6 +1,7 @@
 import { formatISO, format } from "date-fns";
-
+import count from './displayData'
 let idNumber;
+let storageCount;
 export function editTask() {
     const openModalButtons = document.querySelectorAll('[data-modal-target]');
     const closeModalButtons = document.querySelectorAll('[data-close-button]');
@@ -58,5 +59,37 @@ export function closeModal(modal) {
     if (modal === null) return;
     modal.classList.remove('active');
     overlay.classList.remove('active');
+}
+export function checkTask() {
+    const checkImg = document.getElementById(`check-task${idNumber}`);
+    if (checkImg.src.match('../src/icons/circle.png')) {
+        checkImg.setAttribute('src','../src/icons/circle-checked.png')
+        localStorage.setItem(`task${idNumber}status`,'checked')
+    }
+    else {
+        checkImg.setAttribute('src','../src/icons/circle.png')
+        localStorage.setItem(`task${idNumber}status`,'unchecked');
+    }
+}
+export function deleteTask() {
+    const divElement = document.getElementById(`task${idNumber}`);
+    localStorage.removeItem(`task${idNumber}title`)
+    localStorage.removeItem(`task${idNumber}status`)
+    localStorage.removeItem(`task${idNumber}prio`)
+    localStorage.removeItem(`task${idNumber}desc`)
+    localStorage.removeItem(`task${idNumber}date`)
+    if (localStorage.getItem('count') === null) {
+        storageCount = 0;
+    } 
+    else {
+        storageCount = parseInt(localStorage.getItem('count'));
+        //localStorage.setItem('count', `${parseInt(localStorage.getItem('count')) - 1}`)
+    }
+    if (parseInt(localStorage.getItem('count')) === 0 || localStorage.getItem('count') === null || localStorage.length === 1) {
+        localStorage.removeItem('count');
+        console.log('nothing');
+        localStorage.clear();
+    }
+    divElement.remove();
 }
     

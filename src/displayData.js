@@ -2,7 +2,7 @@ import { ToDoList } from '../src/ToDoList'
 import { taskTitle, taskDesc, taskDate, taskPrio, flag } from '../src/data'
 import { isThisMonth, isThisWeek } from 'date-fns';
 
-let count = 0;
+export let count = 0;
 export function insertDataToWebpage() {
     count++;
     const taskDiv = document.querySelectorAll('.task');
@@ -11,6 +11,22 @@ export function insertDataToWebpage() {
     taskCard.setAttribute('id', `task${count}`)
     const editDiv = document.createElement('div');
     editDiv.classList.add('taskedit-div')
+    const checkButton = document.createElement('button')
+    checkButton.classList.add('imgcheckbutton')
+
+    const checkButtonImg = document.createElement('img');
+    checkButtonImg.setAttribute('src', '../src/icons/circle.png')
+    checkButtonImg.classList.add('taskcheck');
+    checkButtonImg.setAttribute('id', `check-task${count}`)
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('imgdeletebutton');
+
+    const deleteButtonImg = document.createElement('img');
+    deleteButtonImg.setAttribute('src', '../src/icons/delete.png')
+    deleteButtonImg.classList.add('taskdelete');
+    deleteButtonImg.setAttribute('id', `delete-task${count}`)
+
     const editButton = document.createElement('button');
     editButton.classList.add('imgeditbutton')
     editButton.setAttribute('data-modal-target', '#modal')
@@ -42,6 +58,10 @@ export function insertDataToWebpage() {
     taskDiv.forEach(task => task.appendChild(taskCard));
     taskCard.appendChild(editDiv)
     editDiv.appendChild(editButton)
+    editDiv.appendChild(deleteButton)
+    editDiv.appendChild(checkButton);
+    checkButton.appendChild(checkButtonImg);
+    deleteButton.appendChild(deleteButtonImg);
     editButton.appendChild(editElement);
     taskCard.appendChild(titleElement);
     taskCard.appendChild(descElement);
@@ -52,44 +72,77 @@ export function insertDataToWebpage() {
 export function insertLocalStorageToWebpage() {
     if (localStorage.length !== 0) {
         for (let i = 1; i <= parseInt(localStorage.getItem('count')); i++) {
-            count = i;
-            const taskDiv = document.querySelectorAll('.task');
-            const taskCard = document.createElement('div');
-            taskCard.classList.add('taskCard');
-            taskCard.setAttribute('id', `task${i}`)
-            const editDiv = document.createElement('div');
-            editDiv.classList.add('taskedit-div')
-            const editButton = document.createElement('button');
+            if (localStorage.getItem(`task${i}title`) !== null) {
 
-            editButton.classList.add('imgeditbutton')
-            editButton.setAttribute('data-modal-target', '#modal')
+                count = i;
+                const taskDiv = document.querySelectorAll('.task');
+                const taskCard = document.createElement('div');
+                taskCard.classList.add('taskCard');
+                taskCard.setAttribute('id', `task${i}`)
+                const editDiv = document.createElement('div');
+                editDiv.classList.add('taskedit-div')
+                const checkButton = document.createElement('button')
+                checkButton.classList.add('imgcheckbutton')
 
-            const editElement = document.createElement('img');
-            editElement.setAttribute('src', '../src/icons/edit.png')
-            editElement.classList.add('taskedit')
-            editElement.setAttribute('id', `edit-task${i}`)
+                const checkButtonImg = document.createElement('img');
+                if (localStorage.getItem(`task${i}status`) === null || localStorage.getItem(`task${i}status`) === 'unchecked') {
+                    checkButtonImg.setAttribute('src', '../src/icons/circle.png')
+                }
+                else {
+                    checkButtonImg.setAttribute('src', '../src/icons/circle-checked.png')
+                }
+                if (localStorage.getItem(`task${i}status`) === null || localStorage.getItem(`task${i}status`) === 'unchecked') {
+                    checkButtonImg.setAttribute('src', '../src/icons/circle.png')
+                }
+                else {
+                    checkButtonImg.setAttribute('src', '../src/icons/circle-checked.png')
+                }
+                checkButtonImg.classList.add('taskcheck');
+                checkButtonImg.setAttribute('id', `check-task${i}`)
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('imgdeletebutton');
 
-            const titleElement = document.createElement('p');
-            titleElement.classList.add('tasktitle')
-            const descElement = document.createElement('p');
-            descElement.classList.add('taskdesc')
-            const dateElement = document.createElement('p');
-            dateElement.classList.add('taskdate')
-            const prioElement = document.createElement('p');
-            prioElement.classList.add('taskprio')
-            titleElement.textContent = localStorage.getItem(`task${i}title`)
-            descElement.textContent = localStorage.getItem(`task${i}desc`)
-            dateElement.textContent = localStorage.getItem(`task${i}date`)
-            prioElement.textContent = localStorage.getItem(`task${i}prio`)
+                const deleteButtonImg = document.createElement('img');
+                deleteButtonImg.setAttribute('src', '../src/icons/delete.png')
+                deleteButtonImg.classList.add('taskdelete');
+                deleteButtonImg.setAttribute('id', `delete-task${count}`)
 
-            taskDiv.forEach(task => task.appendChild(taskCard));
-            taskCard.appendChild(editDiv)
-            editDiv.appendChild(editButton)
-            editButton.appendChild(editElement);
-            taskCard.appendChild(titleElement);
-            taskCard.appendChild(descElement);
-            taskCard.appendChild(dateElement);
-            taskCard.appendChild(prioElement);
+                const editButton = document.createElement('button');
+
+                editButton.classList.add('imgeditbutton')
+                editButton.setAttribute('data-modal-target', '#modal')
+
+                const editElement = document.createElement('img');
+                editElement.setAttribute('src', '../src/icons/edit.png')
+                editElement.classList.add('taskedit')
+                editElement.setAttribute('id', `edit-task${i}`)
+
+                const titleElement = document.createElement('p');
+                titleElement.classList.add('tasktitle')
+                const descElement = document.createElement('p');
+                descElement.classList.add('taskdesc')
+                const dateElement = document.createElement('p');
+                dateElement.classList.add('taskdate')
+                const prioElement = document.createElement('p');
+                prioElement.classList.add('taskprio')
+                titleElement.textContent = localStorage.getItem(`task${i}title`)
+                descElement.textContent = localStorage.getItem(`task${i}desc`)
+                dateElement.textContent = localStorage.getItem(`task${i}date`)
+                prioElement.textContent = localStorage.getItem(`task${i}prio`)
+
+                taskDiv.forEach(task => task.appendChild(taskCard));
+                taskCard.appendChild(editDiv)
+                editDiv.appendChild(editButton)
+                editDiv.appendChild(deleteButton)
+                editDiv.appendChild(checkButton);
+                checkButton.appendChild(checkButtonImg);
+                deleteButton.appendChild(deleteButtonImg);
+                editButton.appendChild(editElement);
+                taskCard.appendChild(titleElement);
+                taskCard.appendChild(descElement);
+                taskCard.appendChild(dateElement);
+                taskCard.appendChild(prioElement);
+            }
         }
     }
     return;
@@ -113,6 +166,26 @@ export function showTodaysTasks() {
             taskCard.setAttribute('id', `task${i}`)
             const editDiv = document.createElement('div');
             editDiv.classList.add('taskedit-div')
+            const checkButton = document.createElement('button')
+            checkButton.classList.add('imgcheckbutton')
+
+            const checkButtonImg = document.createElement('img');
+            if (localStorage.getItem(`task${i}status`) === null || localStorage.getItem(`task${i}status`) === 'unchecked') {
+                checkButtonImg.setAttribute('src', '../src/icons/circle.png')
+            }
+            else {
+                checkButtonImg.setAttribute('src', '../src/icons/circle-checked.png')
+            }
+            checkButtonImg.classList.add('taskcheck');
+            checkButtonImg.setAttribute('id', `check-task${i}`)
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('imgdeletebutton');
+
+            const deleteButtonImg = document.createElement('img');
+            deleteButtonImg.setAttribute('src', '../src/icons/delete.png')
+            deleteButtonImg.classList.add('taskdelete');
+            deleteButtonImg.setAttribute('id', `delete-task${count}`)
+
             const editButton = document.createElement('button');
             editButton.classList.add('imgeditbutton')
             editButton.setAttribute('data-modal-target', '#modal')
@@ -142,6 +215,10 @@ export function showTodaysTasks() {
             taskDiv.forEach(task => task.appendChild(taskCard));
             taskCard.appendChild(editDiv)
             editDiv.appendChild(editButton)
+            editDiv.appendChild(deleteButton)
+            editDiv.appendChild(checkButton);
+            checkButton.appendChild(checkButtonImg);
+            deleteButton.appendChild(deleteButtonImg);
             editButton.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
@@ -169,6 +246,26 @@ export function showWeeklyTasks() {
             taskCard.setAttribute('id', `task${i}`)
             const editDiv = document.createElement('div');
             editDiv.classList.add('taskedit-div')
+            const checkButton = document.createElement('button')
+            checkButton.classList.add('imgcheckbutton')
+
+            const checkButtonImg = document.createElement('img');
+            if (localStorage.getItem(`task${i}status`) === null || localStorage.getItem(`task${i}status`) === 'unchecked') {
+                checkButtonImg.setAttribute('src', '../src/icons/circle.png')
+            }
+            else {
+                checkButtonImg.setAttribute('src', '../src/icons/circle-checked.png')
+            }
+            checkButtonImg.classList.add('taskcheck');
+            checkButtonImg.setAttribute('id', `check-task${i}`)
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('imgdeletebutton');
+
+            const deleteButtonImg = document.createElement('img');
+            deleteButtonImg.setAttribute('src', '../src/icons/delete.png')
+            deleteButtonImg.classList.add('taskdelete');
+            deleteButtonImg.setAttribute('id', `delete-task${count}`)
+
             const editButton = document.createElement('button');
             editButton.classList.add('imgeditbutton')
             editButton.setAttribute('data-modal-target', '#modal')
@@ -198,6 +295,10 @@ export function showWeeklyTasks() {
             taskDiv.forEach(task => task.appendChild(taskCard));
             taskCard.appendChild(editDiv)
             editDiv.appendChild(editButton)
+            editDiv.appendChild(deleteButton)
+            editDiv.appendChild(checkButton);
+            checkButton.appendChild(checkButtonImg);
+            deleteButton.appendChild(deleteButtonImg);
             editButton.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
@@ -223,6 +324,26 @@ export function showMonthlyTasks() {
             taskCard.setAttribute('id', `task${i}`)
             const editDiv = document.createElement('div');
             editDiv.classList.add('taskedit-div')
+            const checkButton = document.createElement('button')
+            checkButton.classList.add('imgcheckbutton')
+
+            const checkButtonImg = document.createElement('img');
+            if (localStorage.getItem(`task${i}status`) === null || localStorage.getItem(`task${i}status`) === 'unchecked') {
+                checkButtonImg.setAttribute('src', '../src/icons/circle.png')
+            }
+            else {
+                checkButtonImg.setAttribute('src', '../src/icons/circle-checked.png')
+            }
+            checkButtonImg.classList.add('taskcheck');
+            checkButtonImg.setAttribute('id', `check-task${i}`)
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('imgdeletebutton');
+
+            const deleteButtonImg = document.createElement('img');
+            deleteButtonImg.setAttribute('src', '../src/icons/delete.png')
+            deleteButtonImg.classList.add('taskdelete');
+            deleteButtonImg.setAttribute('id', `delete-task${count}`)
+
             const editButton = document.createElement('button');
             editButton.classList.add('imgeditbutton')
             editButton.setAttribute('data-modal-target', '#modal')
@@ -252,6 +373,10 @@ export function showMonthlyTasks() {
             taskDiv.forEach(task => task.appendChild(taskCard));
             taskCard.appendChild(editDiv)
             editDiv.appendChild(editButton)
+            editDiv.appendChild(deleteButton)
+            editDiv.appendChild(checkButton);
+            checkButton.appendChild(checkButtonImg);
+            deleteButton.appendChild(deleteButtonImg);
             editButton.appendChild(editElement);
             taskCard.appendChild(titleElement);
             taskCard.appendChild(descElement);
@@ -270,46 +395,73 @@ export function showAllTasks() {
     }
     let generalTasksValues = {};
     for (let i = 1; i <= parseInt(localStorage.getItem('count')); i++) {
-        const taskDiv = document.querySelectorAll('.task');
-        const taskCard = document.createElement('div');
-        taskCard.classList.add('taskCard');
-        taskCard.setAttribute('id', `task${i}`)
-        const editDiv = document.createElement('div');
-        editDiv.classList.add('taskedit-div')
-        const editButton = document.createElement('button');
-        editButton.classList.add('imgeditbutton')
-        editButton.setAttribute('data-modal-target', '#modal')
+        if (localStorage.getItem(`task${i}title`) !== null) {
+
+            const taskDiv = document.querySelectorAll('.task');
+            const taskCard = document.createElement('div');
+            taskCard.classList.add('taskCard');
+            taskCard.setAttribute('id', `task${i}`)
+            const editDiv = document.createElement('div');
+            editDiv.classList.add('taskedit-div')
+            const checkButton = document.createElement('button')
+            checkButton.classList.add('imgcheckbutton')
+
+            const checkButtonImg = document.createElement('img');
+            if (localStorage.getItem(`task${i}status`) === null || localStorage.getItem(`task${i}status`) === 'unchecked') {
+                checkButtonImg.setAttribute('src', '../src/icons/circle.png')
+            }
+            else {
+                checkButtonImg.setAttribute('src', '../src/icons/circle-checked.png')
+            }
+            checkButtonImg.classList.add('taskcheck');
+            checkButtonImg.setAttribute('id', `check-task${i}`)
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('imgdeletebutton');
+
+            const deleteButtonImg = document.createElement('img');
+            deleteButtonImg.setAttribute('src', '../src/icons/delete.png')
+            deleteButtonImg.classList.add('taskdelete');
+            deleteButtonImg.setAttribute('id', `delete-task${count}`)
+
+            const editButton = document.createElement('button');
+            editButton.classList.add('imgeditbutton')
+            editButton.setAttribute('data-modal-target', '#modal')
 
 
-        const editElement = document.createElement('img');
-        editElement.setAttribute('src', '../src/icons/edit.png')
-        editElement.classList.add('taskedit')
-        editElement.setAttribute('id', `edit-task${i}`)
+            const editElement = document.createElement('img');
+            editElement.setAttribute('src', '../src/icons/edit.png')
+            editElement.classList.add('taskedit')
+            editElement.setAttribute('id', `edit-task${i}`)
 
-        const titleElement = document.createElement('p');
-        titleElement.classList.add('tasktitle')
-        const descElement = document.createElement('p');
-        descElement.classList.add('taskdesc')
-        const dateElement = document.createElement('p');
-        dateElement.classList.add('taskdate')
-        const prioElement = document.createElement('p');
-        prioElement.classList.add('taskprio');
-        titleElement.textContent = localStorage.getItem(`task${i}title`)
-        descElement.textContent = localStorage.getItem(`task${i}desc`)
-        dateElement.textContent = localStorage.getItem(`task${i}date`)
-        prioElement.textContent = localStorage.getItem(`task${i}prio`)
-        generalTasksValues[`title${i}`] = localStorage.getItem(`task${i}title`)
-        generalTasksValues[`description${i}`] = localStorage.getItem(`task${i}desc`)
-        generalTasksValues[`duedate${i}`] = localStorage.getItem(`task${i}date`)
-        generalTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
-        taskDiv.forEach(task => task.appendChild(taskCard));
-        taskCard.appendChild(editDiv)
-        editDiv.appendChild(editButton)
-        editButton.appendChild(editElement);
-        taskCard.appendChild(titleElement);
-        taskCard.appendChild(descElement);
-        taskCard.appendChild(dateElement);
-        taskCard.appendChild(prioElement);
+            const titleElement = document.createElement('p');
+            titleElement.classList.add('tasktitle')
+            const descElement = document.createElement('p');
+            descElement.classList.add('taskdesc')
+            const dateElement = document.createElement('p');
+            dateElement.classList.add('taskdate')
+            const prioElement = document.createElement('p');
+            prioElement.classList.add('taskprio');
+            titleElement.textContent = localStorage.getItem(`task${i}title`)
+            descElement.textContent = localStorage.getItem(`task${i}desc`)
+            dateElement.textContent = localStorage.getItem(`task${i}date`)
+            prioElement.textContent = localStorage.getItem(`task${i}prio`)
+            generalTasksValues[`title${i}`] = localStorage.getItem(`task${i}title`)
+            generalTasksValues[`description${i}`] = localStorage.getItem(`task${i}desc`)
+            generalTasksValues[`duedate${i}`] = localStorage.getItem(`task${i}date`)
+            generalTasksValues[`priority${i}`] = localStorage.getItem(`task${i}prio`)
+            taskDiv.forEach(task => task.appendChild(taskCard));
+            taskCard.appendChild(editDiv)
+            editDiv.appendChild(editButton)
+            editDiv.appendChild(deleteButton)
+            editDiv.appendChild(checkButton);
+            checkButton.appendChild(checkButtonImg);
+            deleteButton.appendChild(deleteButtonImg);
+            editButton.appendChild(editElement);
+            taskCard.appendChild(titleElement);
+            taskCard.appendChild(descElement);
+            taskCard.appendChild(dateElement);
+            taskCard.appendChild(prioElement);
+        }
 
     }
 }
