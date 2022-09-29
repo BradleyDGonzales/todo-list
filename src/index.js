@@ -1,8 +1,9 @@
 import './styles.css'
 import initModal from '../src/modal'
-import { collectData } from '../src/data';
+import { checkProjectData, collectData } from '../src/data';
 import { showTodaysTasks, insertLocalStorageToWebpage, showWeeklyTasks, showAllTasks, showMonthlyTasks} from '../src/displayData';
 import { checkTask, deleteTask, editTask, obtainID } from '../src/edit';
+import { addProject, addProjectTile, deleteProjectTile, displayProject } from './projects';
 
 const addTaskButton = document.getElementsByClassName('imgbutton');
 const submitButton = document.querySelector('input[type=submit]')
@@ -19,6 +20,7 @@ window.onload = function() {
     insertLocalStorageToWebpage();
 }
 document.addEventListener('click', function (e) {
+    console.log(e.target.id);
     if (e.target.tagName === 'A' && e.target.textContent === 'Today') {
         showTodaysTasks();
     }
@@ -45,6 +47,13 @@ document.addEventListener('click', function (e) {
     if (e.target.tagName === 'IMG' && e.target.className === 'taskdelete') {
         obtainID(e.target.id);
         deleteTask();
-    
+    }
+    if (e.target.tagName === 'A' && e.target.textContent === 'Add a project') {
+        addProjectTile();
+    }
+    if (e.target.tagName === 'BUTTON' && e.target.className === 'project-delete') {
+        let projectID = obtainID(e.target.id);
+        const projectList = document.getElementById(`project${projectID}`)
+        projectList.remove();
     }
 })

@@ -91,12 +91,6 @@ export function insertLocalStorageToWebpage() {
                 else {
                     checkButtonImg.setAttribute('src', '../src/icons/circle-checked.png')
                 }
-                if (localStorage.getItem(`task${i}status`) === null || localStorage.getItem(`task${i}status`) === 'unchecked') {
-                    checkButtonImg.setAttribute('src', '../src/icons/circle.png')
-                }
-                else {
-                    checkButtonImg.setAttribute('src', '../src/icons/circle-checked.png')
-                }
                 checkButtonImg.classList.add('taskcheck');
                 checkButtonImg.setAttribute('id', `check-task${i}`)
                 const deleteButton = document.createElement('button');

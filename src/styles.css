@@ -29,32 +29,38 @@ header {
     width: 100%;
     gap: 16px;
     position: fixed;
+    box-shadow: 0px 2px 5px 2px rgba(0,0,0,0.49);
 }
 .sidebar-content {
     position: fixed;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 32px;
     background-color: #d1d5db;
     height: 100%;
-    width: 200px;
+    width: 280px;
     z-index: 1;
     left: 0;
     padding-top: 20px;
     font-family: 'gooddogregular';
     font-size: 2em;
     top: 130px;
+    box-shadow: 3px 0px 5px 2px rgba(0,0,0,0.49);
 }
 .nav-all,
 .nav-today,
 .nav-weekly,
 .nav-monthly,
-.projects {
+.projects,
+#add-project {
     display: flex;
-    width: 160px;
+    width: 200px;
     gap: 12px;
     color: #334155;
+    padding-left: 16px;
+}
+.test {
+    display: flex;
 }
 .projects {
     margin-top: 64px;
@@ -79,7 +85,7 @@ a {
 .main {
     height: 100%;
     padding-top: 20px;
-    margin-left: 250px;
+    margin-left: 300px;
     font-family: 'gooddogregular';
     font-size: 32px;
     color: #334155;
@@ -180,7 +186,7 @@ option, select {
     padding: 10px 15px;
     justify-content: center;
 }
-input[type=submit] {
+#taskbutton {
     border-radius: 10px;
     border: none;
     background-color: #334155;
@@ -190,7 +196,7 @@ input[type=submit] {
     padding: 10px 15px;
     cursor: pointer;
 }
-input[type=submit]:active {
+#taskbutton:active {
     transform: scale(0.95);
 }
 .task {
@@ -229,4 +235,34 @@ input[type=submit]:active {
 .taskedit {
     background-color: #d1d5db;
     cursor: pointer;
+}
+.projects-list {
+    display: flex;
+    padding-left: 16px;
+}
+span {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.project-title {
+    display: flex;
+}
+#myBtn {
+    background-color: #d1d5db;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+#myBtn:active {
+    transform: scale(0.7);
+}
+#project-wrapper {
+    display: grid;
+}
+.project-delete {
+    background-color: #d1d5db;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
 }

@@ -42,3 +42,10 @@ export function checkData() {
         taskDesc = 'No description'
     }
 }
+export function checkProjectData() {
+    const projectTitle = document.getElementById('projectitle');
+    if (!projectTitle.checkValidity()) {
+        projectTitle.reportValidity();
+    }
+
+}
