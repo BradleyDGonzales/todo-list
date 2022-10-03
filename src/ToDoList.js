@@ -6,7 +6,6 @@ export class ToDoList {
         this.description = description;
         this.dueDate = new Date(tempDate.getTime() + tempDate.getTimezoneOffset() * 60000).toLocaleDateString();
         this.priority = priority;
-        this.status = status;
     }
     setTitle(title) {
         this.title = title;
