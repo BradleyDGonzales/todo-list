@@ -39,7 +39,7 @@ header {
     background-color: #d1d5db;
     height: 100%;
     width: 280px;
-    z-index: 1;
+    /*z-index: 1;*/
     left: 0;
     padding-top: 20px;
     font-family: 'gooddogregular';
@@ -159,11 +159,16 @@ option, select {
     opacity: 1;
     pointer-events: all;
 }
+.projectTaskCheck,
+.projectTaskEdit,
 .taskcheck,
 .taskedit {
     background-color: #d1d5db;
     border: none;
 }
+.projectImgDeleteButton,
+.projectImgCheckButton,
+.projectImgEditButton,
 .imgdeletebutton,
 .imgcheckbutton,
 .imgeditbutton {
@@ -186,6 +191,7 @@ option, select {
     padding: 10px 15px;
     justify-content: center;
 }
+#projecttaskbutton,
 #taskbutton {
     border-radius: 10px;
     border: none;
@@ -196,6 +202,7 @@ option, select {
     padding: 10px 15px;
     cursor: pointer;
 }
+#projecttaskbutton:active,
 #taskbutton:active {
     transform: scale(0.95);
 }
@@ -206,6 +213,7 @@ option, select {
     row-gap: 32px;
     column-gap: 32px;
 }
+.projectTaskCard,
 .taskCard {
     display: grid;
     grid-template-rows: 0.1fr repeat(4, 1fr);
@@ -215,21 +223,29 @@ option, select {
     border-radius: 10px;
     height: fit-content;
 }
+.projectTaskTitle,
+.projectTaskDesc,
 .taskdesc,
 .tasktitle {
     inline-size: 350px;
     overflow-wrap: break-word;
     text-align: center;
 }
+.projectTaskDate,
+.projectTaskPrio,
 .taskdate,
 .taskprio {
     text-align: center;
 }
+.projectTaskEditDiv,
 .taskedit-div {
     display: flex;
     margin-top: 16px;
     justify-content: space-between;
 }
+.projectTaskDelete,
+.projectTaskCheck,
+.projectTaskEdit,
 .taskdelete,
 .taskcheck,
 .taskedit {
@@ -247,6 +263,8 @@ span {
 }
 .project-title {
     display: flex;
+    width: 260px;
+    justify-content: space-between;
 }
 #myBtn {
     background-color: #d1d5db;

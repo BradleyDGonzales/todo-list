@@ -43,11 +43,11 @@
             <div class="add-task">
                 <button class="imgbutton" data-modal-target="#modal">
                     <img src="../src/icons/todo-list-add.png" alt="" onclick="">
-                    <span>Add a task</span>
+                    <span id="addtask">Add a task</span>
                 </button>
             </div>
             <div class="greeting">
-                <span>Welcome back, shyseus</span>
+                <span>Welcome back, shyseus!</span>
             </div>
             <div class="task" id="tasks">
             </div>
@@ -87,14 +87,13 @@
                         </select>
                     </div>
                     <div id="submitbutton">
-                        <input type="submit" value="Add task" id="taskbutton">
+                        <input class="inputtask" type="submit" value="Add task" id="taskbutton">
                     </div>
                 </form>
             </div>
-            <div id="overlay">
-            </div>
         </div>
     </div>
+    <div id="overlay"></div>
 
 </body>
 

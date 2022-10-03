@@ -1,4 +1,5 @@
-import { insertDataToWebpage } from '../src/displayData';
+import { insertDataToWebpage, insertProjectDataToWebpage } from '../src/displayData';
+import { currentProject } from './projects';
 export let taskTitle;
 export let taskDesc;
 export let taskDate;
@@ -6,7 +7,6 @@ export let taskPrio;
 export let flag = false;
 const form = document.querySelectorAll('.form');
 export function collectData(e) {
-    //e.preventDefault();
     let formData = new FormData(form[0]);
     taskTitle = formData.get('title');
     taskDesc = formData.get('description');
@@ -42,10 +42,14 @@ export function checkData() {
         taskDesc = 'No description'
     }
 }
-export function checkProjectData() {
-    const projectTitle = document.getElementById('projectitle');
-    if (!projectTitle.checkValidity()) {
-        projectTitle.reportValidity();
+export function collectProjectData() {
+    let projectFormData = new FormData(form[0]);
+    taskTitle = projectFormData.get('title');
+    taskDesc = projectFormData.get('description');
+    taskDate = projectFormData.get('duedate');
+    taskPrio = projectFormData.get('priority');
+    checkData();
+    if (flag === false) {
+        insertProjectDataToWebpage();
     }
-
 }

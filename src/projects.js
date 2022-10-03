@@ -1,5 +1,13 @@
+import { collectData } from "./data";
+import { taskTitle, taskDesc, taskDate, taskPrio, flag } from '../src/data'
+import { ToDoList } from './ToDoList'
+import initModal from "./modal";
 let projectsCount = 1;
+export let currentProject;
 export function addProjectTile() {
+    if (parseInt(localStorage.getItem(`projectscount`)) >= 1) {
+        projectsCount = parseInt(localStorage.getItem(`projectscount`)) + 1;
+    }
     const projectForm = document.getElementById('projectform');
 
 
@@ -34,38 +42,67 @@ export function addProjectTile() {
 
     const myAcceptBtn = document.getElementById(`myAcceptBtn${projectsCount}`)
     const myDeclineBtn = document.getElementById(`myDeclineBtn${projectsCount}`)
-    myAcceptBtn.addEventListener('click',function() {
+    myAcceptBtn.addEventListener('click', function () {
         if (!projectsTitle.checkValidity()) {
             projectsTitle.reportValidity();
             return;
         }
-        const projectsListDiv = document.getElementById(`project${projectsCount}`);
-        projectsListDiv.classList.add('ready');
         const projectTitleInput = document.getElementById(`project-title${projectsCount}`)
-        const spanElement = document.createElement('span');
-        spanElement.setAttribute('id', projectsTitle.getAttribute('id'));
-        spanElement.classList.add('project-title')
-        spanElement.textContent = projectTitleInput.value;
+        const anchorElement = document.createElement('a');
+        anchorElement.setAttribute('id', projectsTitle.getAttribute('id'));
+        anchorElement.setAttribute('href', '#')
+        anchorElement.classList.add('project-title')
+        anchorElement.textContent = projectTitleInput.value;
         const deleteProject = document.createElement('button');
         deleteProject.classList.add('project-delete')
-        deleteProject.setAttribute('id',`deleteproject${projectsCount}`)
+        deleteProject.setAttribute('id', `deleteproject${projectsCount}`)
         deleteProject.textContent = '✗';
         while (projectTitleInput.firstChild) {
-            spanElement.appendChild(projectTitleInput.firstChild);
+            anchorElement.appendChild(projectTitleInput.firstChild);
         }
-        projectTitleInput.parentNode.replaceChild(spanElement, projectTitleInput);
-        spanElement.appendChild(deleteProject);
+        projectTitleInput.parentNode.replaceChild(anchorElement, projectTitleInput);
+        anchorElement.appendChild(deleteProject);
+        localStorage.setItem(`project${projectsCount}title`, projectTitleInput.value);
+        localStorage.setItem(`projectscount`, projectsCount)
         myAcceptBtn.remove();
         myDeclineBtn.remove();
-        projectsCount++;
         addProjectButton.style.display = "flex"
-        
+        projectsCount++;
+
     })
-    myDeclineBtn.addEventListener('click',function() {
+    myDeclineBtn.addEventListener('click', function () {
         projectsTitle.remove();
         projectsButtonAccept.remove();
         projectsButtonDecline.remove();
         addProjectButton.style.display = "flex";
-        
+
     })
+}
+export function deleteProjectTile(projectID) {
+    projectID = projectID.slice(-1);
+    const projectList = document.getElementById(`project${projectID}`)
+    projectList.remove();
+    localStorage.removeItem(`project${projectID}title`);
+    if (localStorage.length === 1 || localStorage.length === 2 || localStorage.length === 3) {
+        projectsCount = 1;
+        localStorage.clear();
+    }
+}
+export function myFunction(clickedProject) {
+    const selectAddTask = document.getElementsByClassName('inputtask')[0];
+    selectAddTask.id = 'projecttaskbutton';
+    const selectAddTaskText = document.getElementById('addtask');
+    let searchTerm = clickedProject.indexOf("-title");
+    clickedProject = clickedProject.substring(searchTerm + 6, clickedProject.length);
+    if (document.getElementById(`project-title${clickedProject}`).textContent.includes(" ")) {
+        currentProject = document.getElementById(`project-title${clickedProject}`).textContent.slice(0, -1).replace(/ /g, "_");
+    }
+    else if (document.getElementById(`project-title${clickedProject}`).textContent.includes("-")) {
+        currentProject = document.getElementById(`project-title${clickedProject}`).textContent.slice(0, -1).replace(/-/g, "_");
+    }
+    else {
+        currentProject = document.getElementById(`project-title${clickedProject}`).textContent.slice(0, -1).replace(/ /g, "_");
+    }
+    const selectAnchorElement = document.getElementById(`project-title${clickedProject}`).textContent;
+    selectAddTaskText.textContent = `Add a task for '${selectAnchorElement.slice(0, -1)}'`
 }
